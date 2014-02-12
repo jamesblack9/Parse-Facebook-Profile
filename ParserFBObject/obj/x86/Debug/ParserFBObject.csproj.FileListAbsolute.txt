@@ -1,0 +1,14 @@
+E:\Git Project\FB Parser\ParserFBObject\ParserFBObject\obj\x86\Debug\ParserFBObject.csprojResolveAssemblyReference.cache
+E:\Git Project\FB Parser\ParserFBObject\ParserFBObject\obj\x86\Debug\ParserFBObject.Form1.resources
+E:\Git Project\FB Parser\ParserFBObject\ParserFBObject\obj\x86\Debug\ParserFBObject.LoginForm.resources
+E:\Git Project\FB Parser\ParserFBObject\ParserFBObject\obj\x86\Debug\ParserFBObject.Properties.Resources.resources
+E:\Git Project\FB Parser\ParserFBObject\ParserFBObject\obj\x86\Debug\ParserFBObject.csproj.GenerateResource.Cache
+E:\Git Project\FB Parser\ParserFBObject\ParserFBObject\bin\Debug\ParserFBObject.exe
+E:\Git Project\FB Parser\ParserFBObject\ParserFBObject\bin\Debug\ParserFBObject.pdb
+E:\Git Project\FB Parser\ParserFBObject\ParserFBObject\bin\Debug\Facebook.dll
+E:\Git Project\FB Parser\ParserFBObject\ParserFBObject\bin\Debug\HtmlAgilityPack.dll
+E:\Git Project\FB Parser\ParserFBObject\ParserFBObject\bin\Debug\Facebook.xml
+E:\Git Project\FB Parser\ParserFBObject\ParserFBObject\bin\Debug\HtmlAgilityPack.pdb
+E:\Git Project\FB Parser\ParserFBObject\ParserFBObject\bin\Debug\HtmlAgilityPack.xml
+E:\Git Project\FB Parser\ParserFBObject\ParserFBObject\obj\x86\Debug\ParserFBObject.exe
+E:\Git Project\FB Parser\ParserFBObject\ParserFBObject\obj\x86\Debug\ParserFBObject.pdb

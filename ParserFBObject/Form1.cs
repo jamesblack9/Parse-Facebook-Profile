@@ -77,7 +77,22 @@ namespace ParserFBObject
 
         public string retrieveGroupID(string targetURL)
         {
+            // doan nay viet tam thoi
+            string groupConstraintURL = @"https://www.facebook.com/groups/";
+            string groupName = targetURL.Substring(targetURL.IndexOf(groupConstraintURL), targetURL.Length);
+            string groupID = groupName;
+            for (int i = 0; i < groupName.Length; i++)
+            {
+                if (!Char.IsDigit(groupName[i]))
+                {
+                    groupID = "";
+                }
+            }
+            if (groupID.Length == 0)
+            {
 
+            }
+            return groupID;
         }
     }
 }
