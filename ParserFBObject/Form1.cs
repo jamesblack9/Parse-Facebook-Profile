@@ -11,6 +11,7 @@ using HtmlAgilityPack;
 using System.Threading;
 using mshtml;
 using System.Dynamic;
+using System.Text.RegularExpressions;
 
 namespace ParserFBObject
 {
@@ -53,7 +54,7 @@ namespace ParserFBObject
                     //var result = (IDictionary<string, object>)fb.Get("/me");
                     //var name = (string)result["name"];
                     this.Text = "Welcome " + name + "";
-                    
+
                 }
                 else
                 {
@@ -123,8 +124,8 @@ namespace ParserFBObject
         private void webBrowser1_DocumentCompleted(object sender, WebBrowserDocumentCompletedEventArgs e)
         {
             // by pass async call
-            
-            
+
+
             if (webBrowser1.ReadyState != WebBrowserReadyState.Complete)
             {
                 return;
@@ -142,7 +143,7 @@ namespace ParserFBObject
             // separate thread with main browser thread
             th.SetApartmentState(ApartmentState.STA);
             th.Start();
-            
+
         }
 
         public void callback()
@@ -162,9 +163,9 @@ namespace ParserFBObject
                 HtmlAgilityPack.HtmlNode resultNode = ResultDoc.DocumentNode.SelectSingleNode("//input[@type='hidden' and @name='targetid']");
 
                 // if data in browser not yet updated , make call back after 5 seconds
-                if(resultNode == null)
+                if (resultNode == null)
                 {
-                    
+
                     var th = new Thread(() =>
                     {
                         Thread.Sleep(5000);
@@ -181,8 +182,30 @@ namespace ParserFBObject
         private void DisplayMembers()
         {
             dynamic MemberListData = fb.Get("/" + groupID+ "/members");
-            var friendList = (from f in (IEnumerable<dynamic>)MemberListData.data
-                              select new { f.id, f.name }).ToList();
+            bool isEnd = false;
+             var friendList = (from f in (IEnumerable<dynamic>)MemberListData.data
+                                  select new { f.id, f.name }).ToList();
+            while (!isEnd)
+            {
+
+                string next = MemberListData.paging.next.ToString();
+                next = Regex.Replace(next, "&offset=[0-9]+&", "&offset=" +friendList.Count + "&");
+                next = Regex.Replace(next, "&limit=[0-9]+", "&limit=100000");
+                next = Regex.Replace(next, @"https://graph.facebook.com", "");
+                MemberListData = fb.Get(next);
+                var pagingFriendList = (from f in (IEnumerable<dynamic>)MemberListData.data
+                                        select f).ToList();
+                if (pagingFriendList.Count == 0)
+                {
+                    isEnd = true;
+                }
+                else
+                {
+                    friendList.AddRange((from f in (IEnumerable<dynamic>)MemberListData.data
+                                  select new { f.id, f.name }).ToList());
+                }
+            }
+            this.Text = "Scraping : " + friendList.Count;
             gvResult.DataSource = friendList;
         }
     }
